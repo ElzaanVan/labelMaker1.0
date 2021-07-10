@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Label Maker</title>
+    <!-- bootstrap 5 css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <!-- BOX ICONS CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <!-- custom css -->
+    <link rel="stylesheet" href="newDesign.css" />
+  </head>
+
+  <body>
+    <!--hamburger-->
+
+    
+      <!-- Mobile Navigation Menu -->
+      <div class="topnav" style="display: none;" id="mobileMenuForLabel">
+        <div id="myLinks">
+          <ul class="nav flex-column text-white text-center">
+
+          <li class="nav-link choose-size-of-label-top-nav" onclick="showSizeOption();" >
+            <strong>1</strong><i class="bx bx-ruler"></i>
+               <span class="mx-2-top-nav">SIZE</span>
+           </li>
+
+           <li class="nav-link choose-barcode-of-label-top-nav" onclick="showBarcodeOption();">
+            <strong>2</strong><i class="bx bx-barcode-reader" ></i>
+            <span class="mx-2-top-nav">BARCODE</span>
+          </li>
+
+          <li class="nav-link choose-text-of-label-top-nav" onclick="showTextOption();">
+            <strong>3</strong><i class="bx bx-text" ></i>
+            <span class="mx-2-top-nav">TEXT</span>
+          </li>
+
+          <li class="nav-link choose-image-of-label-top-nav" onclick="showImageOption();">
+            <strong>4</strong><i class="bx bx-image-add" ></i>
+            <span class="mx-2-top-nav">IMAGE</span>
+          </li>
+
+          <li class="nav-link choose-capture-of-label-top-nav" onclick="showCaptureOption();">
+            <strong>5</strong><i class="bx bx-camera" ></i>
+            <span class="mx-2-top-nav">CAPTURE</span>
+          </li>
+
+          <ul>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction();" >
+          <i class="fa fa-bars"></i>
+        </a>
+        
+      </div>
+      
+      <!-- End smartphone / tablet look -->
+  
+
+    <!-- Side-Nav -->
+    
+    <div
+      class="
+        side-navbar
+        active-nav
+        d-flex
+        justify-content-between
+        flex-wrap flex-column
+      "
+      id="sidebar"
+    >
+      <ul class="nav flex-column text-white text-center">
+        <h1 class="h3 text-white m-2">LABEL OPTIONS</h1>
+        <br />
+        <li class="nav-link choose-size-of-label" onclick="showSizeOption();" >
+         <strong>1</strong><i class="bx bx-ruler" style="display: block;"></i>
+            <span class="mx-2">SIZE</span>
+        </li>
+       
+        <li class="nav-link choose-barcode-of-label" onclick="showBarcodeOption();">
+          <strong>2</strong><i class="bx bx-barcode-reader" style="display: block;"></i>
+          <span class="mx-2">BARCODE</span>
+        </li>
+        
+        <li class="nav-link choose-text-of-label" onclick="showTextOption();">
+          <strong>3</strong><i class="bx bx-text" style="display: block;"></i>
+          <span class="mx-2">TEXT</span>
+        </li>
+     
+        <li class="nav-link choose-image-of-label" onclick="showImageOption();">
+          <strong>4</strong><i class="bx bx-image-add" style="display: block;"></i>
+          <span class="mx-2">IMAGE</span>
+        </li>
+        
+        <li class="nav-link choose-capture-of-label" onclick="showCaptureOption();">
+          <strong>5</strong><i class="bx bx-camera" style="display: block;"></i>
+          <span class="mx-2">CAPTURE</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div id="mainWrapperLabel" class="p-1 my-container active-cont">
+ 
+      <!-- Top Nav -->
+      <!-- <nav class="navbar top-navbar navbar-light px-5">
+      <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
+    </nav> -->
+      <!--End Top Nav -->
+      <div id="content" class="container">
+        <div class="header-top">
+          <h1 class="label-maker-header text-center">CHOOSE YOUR PRODUCT</h1>
+          <h2 class="text-center mb-3">Labels - Fast & Easy</h2>
+          </div>
+          <div class="image-div"> 
+
+      
+        <div id="labelBoxDiv" class="text-center">
+          <div class="label-outside-box" id="label-oustide-box">
+            <div id="input-text-boxes">
+
+              <div
+                id="barcode-top"
+                class="barcode text-center"
+               
+              >
+                <div class="text-center">
+                  <!-- <canvas id="canvas" width="200" height="200"></canvas>
+                  <div id="png-container"></div> -->
+                  <svg id="barcodeGenerated"></svg>
+                </div>
+              </div>
+
+              <img
+                id="image"
+                class="output"
+                width="150"
+                height="95"
+                style="display: none"
+              /> 
+
+              <form>
+                <div id="get_me"></div>
+                <div id="add_to_me">
+                  <div id="add0"></div>
+                  <div id="add1"></div>
+                  <div id="add2"></div>
+                </div>
+              </form>
+            </div>
+
+              <!--BARCODE BOTTOM-->
+              <!-- <div id="barcode-bottom" class="barcode text-center">
+                <div class="text-center">
+                  <svg id="barcodeGenerated"></svg>
+                </div> -->
+              </div>
+            </div>
+        
+        
+      
+      
+        <center>
+          <div id="insertLabelSizeOption" class="row" style="display: none">
+            <!--Show Size Option-->
+            <div class="select-size-options">
+              <label for="label-size"
+                ><span class="number-label">1</span> Label Size</label
+              >
+              <div class="select">
+                <select name="label-size" id="label-size">
+                  <option selected disabled>Choose an option</option>
+                  <option value="A1">A1</option>
+                  <option value="A2">A2</option>
+                  <option value="A3">A3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        
+          <div id="insertBarcodeOption" style="display: none; margin-top: 10px;">
+            <!-- Button trigger modal -->
+            <button
+              id="generateBarcode"
+              type="button"
+              class="btn btn-modal btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Generate My Barcode
+            </button>
+            <div class="select-barcode-location">
+              <label for="barcode-location"
+                ><span class="number-label">2</span> Barcode Location</label
+              >
+              <div class="select">
+                <select name="barcode-location" id="barcode-location">
+                  <option selected disabled>Choose an option</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div class="select-barcode-size">
+              <label for="barcode-size"
+                ><span class="number-label">3</span> Barcode Size</label
+              >
+              <div class="select">
+                <select name="barcode-size" id="barcode-size">
+                  <option selected disabled>Choose an option</option>
+                  <option value="smallBarcode">Small</option>
+                  <option value="mediumBarcode">Medium</option>
+                  <option value="largeBarcode">Large</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="insertTextOption" style="display: none">
+            <div class="select-how-many-text-input">
+              <label for="how-many-text-input"
+                ><span class="number-label">4</span> Add or Remove Text Inputs
+              </label>
+              <div class="button-block">
+                <button id="add_btn" class="add-another" onclick="addCode();">
+                  +
+                </button>
+                <button class="add-another" onclick="removeCode();">-</button>
+              </div>
+            </div>
+            
+            <div class="row">
+            <div class="col-md-4">
+              <div class="select-font-size-textBox1" style="display: none;">
+                <h3>Textbox 1</h3>
+                <label for="font-size-textBox1"
+                  ><span class="number-label">5</span> Font size</label
+                >
+                <div class="select">
+                  <select name="font-size-textBox1" id="font-size-textBox1">
+                    <option selected disabled>Choose an option</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-font-family-textBox1" style="display: none;">
+                <label for="font-family-textBox1"
+                  ><span class="number-label">6</span> Font Family</label
+                >
+                <div class="select">
+                  <select name="font-family-textBox1" id="font-family-textBox1">
+                    <option selected disabled>Choose an option</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Monospace">Monospace</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-style-textBox1" style="display: none;">
+                <label for="text-style-textBox1"
+                  ><span class="number-label">7</span> Text Style</label
+                >
+                <div class="select">
+                  <select name="text-style-textBox1" id="text-style-textBox1">
+                    <option selected disabled>Choose an option</option>
+                    <option value="bold">Bold</option>
+                    <option value="italic">Italic</option>
+                    <option value="underline">Underline</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          
+
+            <div class="col-md-4">
+              <div class="select-font-size-textBox2" style="display: none;">
+                <h3>Textbox 2</h3>
+                <label for="font-size-textBox2"
+                  ><span class="number-label">5</span> Font size</label
+                >
+                <div class="select">
+                  <select name="font-size-textBox2" id="font-size-textBox2">
+                    <option selected disabled>Choose an option</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-font-family-textBox2" style="display: none;">
+                <label for="font-family-textBox2"
+                  ><span class="number-label">6</span> Font Family</label
+                >
+                <div class="select">
+                  <select name="font-family-textBox2" id="font-family-textBox2">
+                    <option selected disabled>Choose an option</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Monospace">Monospace</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-style-textBox2" style="display: none;">
+                <label for="text-style-textBox2"
+                  ><span class="number-label">7</span> Text Style</label
+                >
+                <div class="select">
+                  <select name="text-style-textBox2" id="text-style-textBox2">
+                    <option selected disabled>Choose an option</option>
+                    <option value="bold">Bold</option>
+                    <option value="italic">Italic</option>
+                    <option value="underline">Underline</option>
+                  </select>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4">
+              <div class="select-font-size-textBox3" style="display: none;">
+                <h3>Textbox 3</h3>
+                <label for="font-size-textBox3"
+                  ><span class="number-label">5</span> Font size</label
+                >
+                <div class="select">
+                  <select name="font-size-textBox3" id="font-size-textBox3">
+                    <option selected disabled>Choose an option</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-font-family-textBox3" style="display: none;">
+                <label for="font-family-textBox3"
+                  ><span class="number-label">6</span> Font Family</label
+                >
+                <div class="select">
+                  <select name="font-family-textBox3" id="font-family-textBox3">
+                    <option selected disabled>Choose an option</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Monospace">Monospace</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="select-style-textBox3" style="display: none;">
+                <label for="text-style-textBox3"
+                  ><span class="number-label">7</span> Text Style</label
+                >
+                <div class="select">
+                  <select name="text-style-textBox3" id="text-style-textBox3">
+                    <option selected disabled>Choose an option</option>
+                    <option value="bold">Bold</option>
+                    <option value="italic">Italic</option>
+                    <option value="underline">Underline</option>
+                  </select>
+                </div>
+                </div>
+            </div>
+          </div>
+          </div>
+
+          <div id="insertImageOptions" style="display: none;">
+          <div id="ranger-slider-photo">
+            <label id="label-slider" for="ranger" style="display: none;"
+              >Size Your Image</label
+            >
+            <input
+              id="ranger"
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              style="display: none;"
+            />
+          </div>
+          <form
+                  action=""
+                  name="imageUpload"
+                  class="image_upload"
+                  method="POST"
+                >
+                  <p>
+                    <input
+                      class="btn btn-upload"
+                      type="file"
+                      accept="image/*"
+                      name="image"
+                      id="fileUploadImage"
+                      onchange="loadFile(event)"
+                    />
+                  </p>
+                  <p>
+                  </p>
+                  <p><img class="output" width="200" /></p>
+                </form>
+
+                <div class="select-image-left-or-right">
+                  <label for="image-left-or-right"
+                    ><span class="number-label">8</span> Position Your Image Right or
+                    Left</label
+                  >
+                  <div class="select">
+                    <select name="image-left-or-right" id="image-left-or-right">
+                      <option selected disabled>Choose an option</option>
+                      <option value="right">Right</option>
+                      <option value="left">Left</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="select-image-top-or-bottom">
+                  <label for="image-top-or-bottom"
+                    ><span class="number-label">9</span> Position Your Image At The Top, Bottom, or Center the Image</label
+                  >
+                  <div class="select">
+                    <select name="image-top-or-bottom" id="image-top-or-bottom">
+                      <option selected disabled>Choose an option</option>
+                      <option value="top">Top</option>
+                      <option value="middle">Center</option>
+                      <option value="bottom">Bottom</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+        </div>
+        <div id="showCaptureOptionDiv" style="display: none;">
+          <button  class="image-div" class="btn btn-capture-label-to-png" onclick="getImage()">
+            Download image of label
+        </button>
+        </div>
+        </div>
+
+        
+     
+   
+        </center>
+          <!--MODAL-->
+          <form action="post">
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Generate Your Barcode
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container codeContainer">
+                      <h3 class="banner text-center">
+                        Please Enter Your Barcode Details
+                      </h3>
+
+                      <div class="pd-15">
+                        <div class="form-group">
+                          <label>Fill code</label>
+                          <input
+                            type="text"
+                            name="barcodeValue"
+                            id="barcodeValue"
+                            class="form-control"
+                            value=""
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label>Barcode Types</label>
+                          <select
+                            name="barcodeType"
+                            id="barcodeType"
+                            class="form-control"
+                          >
+                            <option value="code128">Code 128</option>
+                            <option value="codabar">Codabar</option>
+                            <option value="code39">Code 39</option>
+                            <option value="msi">MSI</option>
+                            <option value="pharmacode">Pharmacode</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Show Text</label>
+                          <select
+                            name="showText"
+                            id="showText"
+                            class="form-control"
+                            required
+                          >
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                          </select>
+                        </div>
+
+                        <input
+                          id="generate-barcode-modal-button"
+                          type="button"
+                          onclick="generateBarcode()"
+                          class="btn btn-danger form-control"
+                          value="Generate"
+                          data-bs-dismiss="modal"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+<!--MODAL ON PAGE LOAD-->
+<div id="PageLoadModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-page-load-dialog">
+    <!-- Modal content-->
+    <div class="modal-content-page-load">
+      <div class="modal-header">
+        <button type="button" class="close-page-load-button" data-bs-dismiss="modal">&times;</button>
+        <!--         <h4 class="modal-title">Modal Header</h4> -->
+      </div>
+      <div class="modal-body text-center">
+        <h1>CUSTOMISE YOUR NEW LABEL</h1>
+        <p>Start by choosing your label options</p>
+        
+      </div>
+      <div class="modal-footer modal-footer-page-load">
+       <button class="btn btn-lg btn-load-page-modal" data-bs-dismiss="modal">Start Now</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+         
+          
+     
+
+    <!-- bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.3/dist/JsBarcode.all.min.js"
+    ></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+    <script>
+//     function getImage() { 
+//     html2canvas(document.getElementsByClassName("image-div")[0], {
+//       useCORS: true, allowTaint: true
+//     }).then(function (canvas) {
+//     var imageURL = canvas.toDataURL("image/png");
+//     let a = document.createElement("a");
+//     a.href = imageURL;
+//     a.download = imageURL;
+//     a.click();
+// });
+//   }
+    </script>
+    <script>
+      function generateBarcode() {
+        var barcodeValue = document.getElementById("barcodeValue").value;
+        var barcodeType = document.getElementById("barcodeType").value;
+        var showText = document.getElementById("showText").value;
+        JsBarcode("#barcodeGenerated", barcodeValue, {
+          format: barcodeType,
+          displayValue: showText,
+          lineColor: "#24292e",
+          width: 2,
+          height: 40,
+          fontSize: 20,
+        });
+      }
+      generateBarcode();
+
+      //Modal
+      var myModal = document.getElementById("myModal");
+      var myInput = document.getElementById("myInput");
+
+      myModal.addEventListener("shown.bs.modal", function () {
+        myInput.focus();
+      });
+
+
+
+    </script>
+    <script src="newDesign.js"></script>
+  </body>
+</html>
